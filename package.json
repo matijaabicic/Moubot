@@ -1,0 +1,24 @@
+{
+  "name": "Moubot",
+  "version": "0.0.1",
+  "description": "Mourinho Slack Bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/matijaabicic/Moubot"
+  },
+  "keywords": [
+    "mourinho",
+    "slack",
+    "bot"
+  ],
+  "author": "@matijaabicic",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matijaabicic/Moubot/issues"
+  },
+  "homepage": "https://github.com/matijaabicic/Moubot"
+}
