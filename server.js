@@ -16,4 +16,9 @@ var server = http.createServer(handleRequest);
 server.listen(PORT, function(){
   //callback when server is successfully listening
   console.log("Server started at localhost:%s", PORT);
+
+  //set up a timer.
+  setInterval(function(){
+    console.log('test');
+  }, 1000);
 } );
