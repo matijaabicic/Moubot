@@ -1,9 +1,16 @@
 // add http module and client
 var http = require('http');
 var request = require('request');
+var tokens = require('./tokens');
 
-//let the port be configurable
-const PORT = 8080;
+
+//let the server port be configurable. it really doesn't matter since this
+//is a listening port. Moubot v1 does not listen.
+var PORT = 8080;
+
+//these variables are to be externalized at a later point
+var resultsEndpoint = tokens.resultsEndpoint;
+var resultsToken = tokens.resultsToken;
 
 //receiving and responding to requests
 function handleRequest(request, response){
@@ -13,7 +20,20 @@ function handleRequest(request, response){
 
 var server = http.createServer(handleRequest);
 
+//let's define options for our recurrent http request
+var options = {
+  url: resultsEndpoint,
+  headers: {
+    'X-Auth-Token' : resultsToken
+  }
+};
 
+function callback(error, response, body){
+  if (!error && response.statusCode==200)
+  {
+    console.log(body);
+  }
+}
 
 //spin up the listener
 server.listen(PORT, function(){
@@ -22,12 +42,6 @@ server.listen(PORT, function(){
 
   //set up a timer.
   setInterval(function(){
-
-    //console.log('test');
-    request('http://www.google.com', function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-        console.log(body); // Print the google web page.
-     }
-   });
+    request(options, callback);
   }, 1000);
 } );
