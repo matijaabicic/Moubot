@@ -46,15 +46,34 @@ function callback(error, response, body){
       var matchDateTime = moment(data.fixtures[index].date);
       matchDateTime.utc();
 
-      //let's figure out who we're playing against
+      //let's figure out the match details. this will need refactoring, but let's just get it to work right now
       var opponent = data.fixtures[index].homeTeamName;
+      var where = "Away";
+      var homeGoals = data.fixtures[index].result.goalsHomeTeam;
+      var awayGoals = data.fixtures[index].result.goalsAwayTeam;
       if (opponent == myTeamName)
       {
         opponent = data.fixtures[index].awayTeamName;
+        where = "Home";
       }
 
-        console.log('Matchday: ' + data.fixtures[index].matchday + ' against ' + opponent + ' is ' + RightNow.to(matchDateTime));
+        console.log('Matchday: ' + data.fixtures[index].matchday + ' against ' + opponent + ' (' + where + ') is ' + RightNow.to(matchDateTime));
         console.log('-- Date : ' + matchDateTime.format("dddd, MMMM Do YYYY, h:mm:ss a z"));
+        if (matchDateTime.isBefore(RightNow))
+        {
+          //let's prepare our won-tied-lost string
+          var winOrLose = "Won";
+          if (awayGoals == homeGoals)
+          {
+            winOrLose = "Tied";
+          }
+          else if ((where == "Home" && parseInt(homeGoals) < parseInt(awayGoals)) || (where == "Away" && parseInt(homeGoals) > parseInt(awayGoals)))
+          {
+            winOrLose = "Lost";
+          }
+
+          console.log('-- ' + winOrLose + ' that one at ' + where + '. It was ' + homeGoals + ':' + awayGoals);
+        }
     }
     //console.log(data.fixtures);
   }
