@@ -3,6 +3,7 @@ var http = require('http');
 var request = require('request');
 var tokens = require('./tokens');
 var callback = require('./callback');
+var settings = require('./settings');
 
 
 //let the server port be configurable. it really doesn't matter since this
@@ -12,7 +13,10 @@ var PORT = 8080;
 //these variables are to be externalized at a later point
 var resultsEndpoint = tokens.resultsEndpoint;
 var resultsToken = tokens.resultsToken;
-var callback2 = callback.callback;
+var callback = callback.callback;
+
+//pick up settings into local variables
+var pingInterval = settings.interval;
 
 //receiving and responding to requests
 function handleRequest(request, response){
@@ -38,6 +42,6 @@ server.listen(PORT, function(){
 
   //set up a timer.
   setInterval(function(){
-    request(options, callback2);
-  }, 1000);
+    request(options, callback);
+  }, pingInterval);
 } );
