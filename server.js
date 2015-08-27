@@ -1,6 +1,7 @@
 // add http module and client
 var http = require('http');
 var request = require('request');
+var moment = require('moment');
 var tokens = require('./tokens');
 
 
@@ -11,6 +12,7 @@ var PORT = 8080;
 //these variables are to be externalized at a later point
 var resultsEndpoint = tokens.resultsEndpoint;
 var resultsToken = tokens.resultsToken;
+var myTeamName = tokens.myTeamName;
 
 //receiving and responding to requests
 function handleRequest(request, response){
@@ -28,35 +30,31 @@ var options = {
   }
 };
 
-//helper function to figure out the difference between two dates in units of time
-var DateDiff = {
-  inHours: function(date1, date2){
-    var t1 = date1.getTime();
-    var t2 = date2.getTime();
-
-    return parseInt((t2-t1)/(1000*3600));
-  }
-};
 
 function callback(error, response, body){
   if (!error && response.statusCode==200)
   {
     //We will need the date when deetrmining when to say something
     //We want Moubot to speak when there is a match and be silent otherwise
-    var RightNow = new Date();
-
-    console.log(RightNow);
+    var RightNow = moment.utc();
 
     var data = JSON.parse(body);
     //console.log(data);
     for (index in data.fixtures)
     {
-      //if (DateDiff.inHours(Date(data.fixtures[index].date), Date(RightNow)) < 72)
-      //{
-        console.log('Matchday: ' + data.fixtures[index].matchday);
-        console.log('-- Date : ' + data.fixtures[index].date);
-        //console.log(DateDiff.inHours(Date(data.fixtures[index].date), Date(RightNow)));
-      //}
+      //pick up the match date time and set the flag to utc
+      var matchDateTime = moment(data.fixtures[index].date);
+      matchDateTime.utc();
+
+      //let's figure out who we're playing against
+      var opponent = data.fixtures[index].homeTeamName;
+      if (opponent == myTeamName)
+      {
+        opponent = data.fixtures[index].awayTeamName;
+      }
+
+        console.log('Matchday: ' + data.fixtures[index].matchday + ' against ' + opponent + ' is ' + RightNow.to(matchDateTime));
+        console.log('-- Date : ' + matchDateTime.format("dddd, MMMM Do YYYY, h:mm:ss a z"));
     }
     //console.log(data.fixtures);
   }
