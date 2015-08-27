@@ -28,10 +28,40 @@ var options = {
   }
 };
 
+//helper function to figure out the difference between two dates in units of time
+var DateDiff = {
+  inHours: function(date1, date2){
+    var t1 = date1.getTime();
+    var t2 = date2.getTime();
+
+    return parseInt((t2-t1)/(1000*3600));
+  }
+};
+
 function callback(error, response, body){
   if (!error && response.statusCode==200)
   {
-    console.log(body);
+    //We will need the date when deetrmining when to say something
+    //We want Moubot to speak when there is a match and be silent otherwise
+    var RightNow = new Date();
+
+    console.log(RightNow);
+
+    var data = JSON.parse(body);
+    //console.log(data);
+    for (index in data.fixtures)
+    {
+      //if (DateDiff.inHours(Date(data.fixtures[index].date), Date(RightNow)) < 72)
+      //{
+        console.log('Matchday: ' + data.fixtures[index].matchday);
+        console.log('-- Date : ' + data.fixtures[index].date);
+        //console.log(DateDiff.inHours(Date(data.fixtures[index].date), Date(RightNow)));
+      //}
+    }
+    //console.log(data.fixtures);
+  }
+  else {
+    console.error();
   }
 }
 
