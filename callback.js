@@ -39,6 +39,8 @@ var callback = function(error, response, body){
         {
           //let's prepare our won-tied-lost string
           var winOrLose = "Won";
+          //and also prepare our output string
+          var output = '-- '
           if (awayGoals == homeGoals)
           {
             winOrLose = "Tied";
@@ -47,8 +49,10 @@ var callback = function(error, response, body){
           {
             winOrLose = "Lost";
           }
-
-          console.log('-- ' + winOrLose + ' that one at ' + where + '. It was ' + homeGoals + ':' + awayGoals);
+          output += winOrLose + ' that one';
+          output += (where=='Home') ? ' at home' : ' away';
+          output += '. It was ' + homeGoals + ':' + awayGoals;
+          console.log(output);
         }
     }
   }
