@@ -1,6 +1,7 @@
 var moment  = require('moment');
 var tokens  = require('./tokens');
 var phrases = require('./phrases');
+var helper  = require('./helperFunctions');
 
 //these variables are to be externalized at a later point
 var resultsEndpoint = tokens.resultsEndpoint;
@@ -42,45 +43,14 @@ var callback = function(error, response, body){
         if (matchDateTime.isBefore(RightNow))
         {
           //let's prepare our won-tied-lost string
-          var winOrLose = "Won";
-          //and also prepare our output string
-          if (awayGoals == homeGoals)
-          {
-            winOrLose = "Tied";
-          }
-          else if ((where == "Home" && parseInt(homeGoals) < parseInt(awayGoals)) || (where == "Away" && parseInt(homeGoals) > parseInt(awayGoals)))
-          {
-            winOrLose = "Lost";
-          }
-          var output = '-- '
-          output += winOrLose + ' that one';
-          output += (where=='Home') ? ' at home' : ' away';
-          output += '. It was ' + homeGoals + ':' + awayGoals;
+          var winOrLose = helper.interpretOutcome(where, homeGoals, awayGoals);
 
-          if (winOrLose == "Won"){
-            if (phrases.win.length == 1){
-              console.log(phrases.win[0]);
-            }
-            else {
-              console.log(phrases.win[Math.floor(Math.random() * phrases.win.length)]);
-            }
-          }
-          else if (winOrLose == "Tied"){
-            if (phrases.tie.length == 1){
-              console.log(phrases.tie[0]);
-            }
-            else {
-              console.log(phrases.tie[Math.floor(Math.random() * phrases.tie.length)]);
-            }
-          }
-          else {
-            if (phrases.tie.length == 1){
-              console.log(phrases.lost[0]);
-            }
-            else {
-              console.log(phrases.lost[Math.floor(Math.random() * phrases.lost.length)]);
-            }
-          }
+          //get the smart-ass phrases and say it
+          var output = helper.sayPhrase(winOrLose);
+          console.log(output);
+
+          //pretty-print the outcome and display it
+          output = helper.formatOutcome(where, homeGoals, awayGoals, winOrLose);
           console.log(output);
 
         }
