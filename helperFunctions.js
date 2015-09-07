@@ -1,4 +1,6 @@
 var phrases = require('./phrases');
+var tokens = require('./tokens');
+var slack = require('node-slack');
 
 //helper functions to be called by other modules
 module.exports =  {
@@ -44,5 +46,24 @@ module.exports =  {
     output += (venue=='Home') ? ' at home' : ' away';
     output += '. It was ' + homeGoals + ':' + awayGoals;
     return output;
+  },
+  //end of formatOutcome
+
+  //post To Slack
+  postToSlack : function (phrase){
+    //get the endpoint from tokens file
+    var slackToken = tokens.slackURI;
+
+    //if not initialized, just say Hello
+    phrase = phrase || this.sayHello();
+    //test sender
+    var slackSender = new slack(slackToken);
+    slackSender.send({
+      text : phrase,
+      channel: "#bot-testing"
+    });
+
+    return null;
   }
+  //end of postToSlack
 };
