@@ -1,7 +1,7 @@
 //app-specific sentence
 
 //how often should we request fixtures from the web service
-var pingInteralInMilliseconds = 1000;
+var pingInteralInMilliseconds = 1000; // * 60 * 60;
 var postBeforeTheMatch = true;
 var postAfterTheMatch = true;
 

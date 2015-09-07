@@ -1,6 +1,5 @@
 var moment  = require('moment');
 var tokens  = require('./tokens');
-var phrases = require('./phrases');
 var helper  = require('./helperFunctions');
 
 //these variables are to be externalized at a later point

@@ -26,28 +26,13 @@ module.exports =  {
   // output depends on the outcom of the match
   sayPhrase : function(outcome){
     if (outcome == "Won"){
-      if (phrases.win.length == 1){
-        return phrases.win[0];
-      }
-      else {
-        return(phrases.win[Math.floor(Math.random() * phrases.win.length)]);
-      }
+      return(phrases.win[Math.floor(Math.random() * phrases.win.length)]);
     }
     else if (outcome == "Tied"){
-      if (phrases.tie.length == 1){
-        return phrases.tie[0];
-      }
-      else {
-        return phrases.tie[Math.floor(Math.random() * phrases.tie.length)];
-      }
+      return phrases.tie[Math.floor(Math.random() * phrases.tie.length)];
     }
     else {
-      if (phrases.tie.length == 1){
-         return phrases.lost[0];
-      }
-      else {
-        return phrases.lost[Math.floor(Math.random() * phrases.lost.length)];
-      }
+      return phrases.lost[Math.floor(Math.random() * phrases.lost.length)];
     }
   },
   //end of sayPhrase
