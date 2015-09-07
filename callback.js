@@ -1,5 +1,6 @@
-var moment = require('moment');
-var tokens = require('./tokens');
+var moment  = require('moment');
+var tokens  = require('./tokens');
+var phrases = require('./phrases');
 
 //these variables are to be externalized at a later point
 var resultsEndpoint = tokens.resultsEndpoint;
@@ -12,8 +13,11 @@ var callback = function(error, response, body){
   {
     //We will need the date when deetrmining when to say something
     //We want Moubot to speak when there is a match and be silent otherwise
+    //--
+    //-- This needs to be refactored. badly.
+    //--
+    //--
     var RightNow = moment.utc();
-
     var data = JSON.parse(body);
     //console.log(data);
     for (index in data.fixtures)
@@ -40,7 +44,6 @@ var callback = function(error, response, body){
           //let's prepare our won-tied-lost string
           var winOrLose = "Won";
           //and also prepare our output string
-          var output = '-- '
           if (awayGoals == homeGoals)
           {
             winOrLose = "Tied";
@@ -49,10 +52,37 @@ var callback = function(error, response, body){
           {
             winOrLose = "Lost";
           }
+          var output = '-- '
           output += winOrLose + ' that one';
           output += (where=='Home') ? ' at home' : ' away';
           output += '. It was ' + homeGoals + ':' + awayGoals;
+
+          if (winOrLose == "Won"){
+            if (phrases.win.length == 1){
+              console.log(phrases.win[0]);
+            }
+            else {
+              console.log(phrases.win[Math.floor(Math.random() * phrases.win.length)]);
+            }
+          }
+          else if (winOrLose == "Tied"){
+            if (phrases.tie.length == 1){
+              console.log(phrases.tie[0]);
+            }
+            else {
+              console.log(phrases.tie[Math.floor(Math.random() * phrases.tie.length)]);
+            }
+          }
+          else {
+            if (phrases.tie.length == 1){
+              console.log(phrases.lost[0]);
+            }
+            else {
+              console.log(phrases.lost[Math.floor(Math.random() * phrases.lost.length)]);
+            }
+          }
           console.log(output);
+
         }
     }
   }
