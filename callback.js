@@ -13,7 +13,8 @@ var callback = function(error, response, body){
     //--
     var RightNow = moment.utc();
     //debug only
-    RightNow = moment.utc('2015-08-08T18:15');
+    //RightNow = moment.utc('2015-08-08T18:15');
+
     var data = JSON.parse(body);
     //console.log(data);
     for (index in data.fixtures)
