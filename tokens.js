@@ -1,14 +1,11 @@
 //store the endpoint private key
 //in this case, we're picking up premier league fixtures for Chelsea FC.
-var resultsEndpoint = 'http://api.football-data.org/alpha/teams/61/fixtures';
-var resultsToken = '-- YOUR OWN KEY --';
-var myTeamName = 'Chelsea FC';
+module.exports = {
+  resultsEndpoint : 'http://api.football-data.org/alpha/teams/61/fixtures',
+  resultsToken : '-- YOUR OWN TOKEN --',
+  myTeamName : 'Chelsea FC',
 
-//Slack endpoint
-var slackURI = '-- YOUR OWN SLACK INCOMING HOOK --';
+  //Slack endpoint
+  slackURI : '-- YOUR OWN SLACK INCOMING WEB HOOK --'
 
-//make this available to the server.
-exports.resultsToken = resultsToken;
-exports.resultsEndpoint = resultsEndpoint;
-exports.myTeamName = myTeamName;
-exports.slackURI = slackURI;
+};

@@ -18,6 +18,8 @@ var callback = function(error, response, body){
     //--
     //--
     var RightNow = moment.utc();
+    //debug only
+    RightNow = moment.utc('2015-09-12T11:40');
     var data = JSON.parse(body);
     //console.log(data);
     for (index in data.fixtures)
@@ -25,6 +27,10 @@ var callback = function(error, response, body){
       //pick up the match date time and set the flag to utc
       var matchDateTime = moment(data.fixtures[index].date);
       matchDateTime.utc();
+
+      //only comment on the match that is about to start in 5 minutes
+      if (RightNow.to(matchDateTime) == 'in 5 minutes')
+      {
 
       //let's figure out the match details. this will need refactoring, but let's just get it to work right now
       var opponent = data.fixtures[index].homeTeamName;
@@ -53,6 +59,7 @@ var callback = function(error, response, body){
           console.log(output);
 
         }
+      }
     }
   }
   else {
