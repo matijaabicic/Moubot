@@ -12,7 +12,8 @@ module.exports = {
           "They play with 3 goalies. I cannot play against 3 goalies.",
           "So if one day the result becomes 3-3, for me it doesn't change my mind, because it's football, it's normal. What is not normal is that we haven't been scoring enough goals playing such good football as we've been playing in the last few weeks.",
           "We tied. That means we did not lose. It is a big difference.",
-          "The moral of the story is not to listen to those who tell you not to play the violin but stick to the tambourine."
+          "The moral of the story is not to listen to those who tell you not to play the violin but stick to the tambourine.",
+          "He always talk talk talk, always the talking. He have a little luck, some easy opposition, I think his head is in the clouds. He forget about the international break, maybe 1 maybe 2 maybe 3 injury, we will see."
         ],
 
   'lost': ["We deserved not to lose.",
