@@ -64,7 +64,7 @@ module.exports =  {
     var slackSender = new slack(slackToken);
     slackSender.send({
       text : phrase,
-      channel: "#bot-testing"
+      channel: "#football"
     });
 
     return null;
