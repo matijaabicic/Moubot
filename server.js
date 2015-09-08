@@ -7,12 +7,12 @@ var settings = require('./settings');
 
 //let the server port be configurable. it really doesn't matter since this
 //is a listening port. Moubot v1 does not listen.
-var PORT = 8080;
+var PORT = settings.serverPort;
 
 //receiving and responding to requests
 function handleRequest(request, response){
   //no interaction with the server just yet.
-  response.end('No interaction allowed.');
+  response.end('No interactions allowed.');
 }
 
 var server = http.createServer(handleRequest);
@@ -31,8 +31,11 @@ server.listen(PORT, function(){
   //callback when server is successfully listening
   console.log("Server started at localhost:%s", PORT);
 
+  //keep a track of last matchday commented, to avoid duplicates
+  global.lastMatch = null;
+
   //set up a timer.
   setInterval(function(){
     request(options, callback.callback);
-  }, settings.interval);
+  }, settings.pingInteralInMilliseconds);
 } );

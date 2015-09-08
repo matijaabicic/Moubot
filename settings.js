@@ -1,8 +1,9 @@
 //app-specific sentence
 
 module.exports = {
-  pingInteralInMilliseconds : 1000, // server main loop interval
+  serverPort : 8080,
+  pingInteralInMilliseconds : 1000*5, // server main loop interval. 6 hours
   postBeforeTheMatch : true,
   postAfterTheMatch : true,
-  preMatchWindowInMinutes: 5
+  preMatchWindowInMinutes: "in 5 minutes" // moment.js humanize expression
 };

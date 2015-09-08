@@ -33,8 +33,11 @@ module.exports =  {
     else if (outcome == "Tied"){
       return phrases.tie[Math.floor(Math.random() * phrases.tie.length)];
     }
-    else {
+    else if (outcome == "Lost") {
       return phrases.lost[Math.floor(Math.random() * phrases.lost.length)];
+    }
+    else{
+      return phrases.upcoming[Math.floor(Math.random() * phrases.upcoming.length)];
     }
   },
   //end of sayPhrase
@@ -56,6 +59,7 @@ module.exports =  {
 
     //if not initialized, just say Hello
     phrase = phrase || this.sayHello();
+
     //test sender
     var slackSender = new slack(slackToken);
     slackSender.send({
@@ -64,6 +68,39 @@ module.exports =  {
     });
 
     return null;
-  }
+  },
   //end of postToSlack
+
+  //based on home and away team names, evaluate whether we're playing home or away
+  homeOrAway : function(fixture){
+    var where = "Away";
+    if (fixture.homeTeamName == tokens.myTeamName)
+    {
+      where = "Home";
+    }
+    return where;
+  },
+  //end of homeOrAway
+
+  //figure out who's the opponent
+  getOpponent : function(fixture){
+    var opponent = fixture.homeTeamName;
+    if (opponent == tokens.myTeamName)
+    {
+      opponent = fixture.awayTeamName;
+    }
+    return opponent;
+  },
+  //end of getOpponent
+
+  //just return the number of away goals
+  getAwayGoals : function(fixture) {
+    return fixture.result.goalsAwayTeam;
+  },
+  //end of getAwayGoals
+
+  //just return the number of home goals
+  getHomeGoals : function(fixture){
+    return fixture.result.goalsHomeTeam;
+  }
 };

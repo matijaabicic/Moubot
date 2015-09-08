@@ -1,6 +1,6 @@
 {
   "name": "Moubot",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Mourinho Slack Bot",
   "main": "index.js",
   "scripts": {
