@@ -31,8 +31,10 @@ server.listen(PORT, function(){
   //callback when server is successfully listening
   console.log("Server started at localhost:%s", PORT);
 
-  //keep a track of last matchday commented, to avoid duplicates
-  global.lastMatch = null;
+  //keep a track of last matchday commented, to avoid duplicates.
+  //this needs refactoring
+  global.lastPreMatchComment = null;
+  global.lastPostMatchComment = null;
 
   //set up a timer.
   setInterval(function(){

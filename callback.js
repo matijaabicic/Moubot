@@ -13,7 +13,7 @@ var callback = function(error, response, body){
     //--
     var RightNow = moment.utc();
     //debug only
-    RightNow = moment.utc('2015-09-12T11:40');
+    RightNow = moment.utc('2015-08-08T18:15');
     var data = JSON.parse(body);
     //console.log(data);
     for (index in data.fixtures)
@@ -33,10 +33,10 @@ var callback = function(error, response, body){
       //also, we don't want to comment on a match we already commented on
       if (settings.postBeforeTheMatch &&
           (RightNow.to(matchDateTime) == settings.preMatchWindowInMinutes) &&
-          !(moment(global.lastMatch).isSame(moment(matchDateTime))))
+          !(moment(global.lastPreMatchComment).isSame(moment(matchDateTime))))
       {
         //remember this match date time so we don't keep saying things about it
-        global.lastMatch = matchDateTime;
+        global.lastPreMatchComment = matchDateTime;
 
         //say the "upcoming" phrase
         var output = where + ' match vs. ' + opponent + '. ';
@@ -47,21 +47,18 @@ var callback = function(error, response, body){
         //debug help
         //console.log('Matchday: ' + data.fixtures[index].matchday + ' against ' + opponent + ' (' + where + ') is ' + RightNow.to(matchDateTime));
         //console.log('-- Date : ' + matchDateTime.format("dddd, MMMM Do YYYY, h:mm:ss a z"));
+      //post-match banter
+      if (settings.postAfterTheMatch &&
+          (RightNow.to(matchDateTime) == settings.postMatchWindowInHours) &&
+          !(moment(global.lastPostMatchComment).isSame(moment(matchDateTime))))
+      {
+        global.lastPostMatchComment = matchDateTime;
+        //let's prepare our won-tied-lost string
+        var winOrLose = helper.interpretOutcome(where, homeGoals, awayGoals);
 
-        if (matchDateTime.isBefore(RightNow))
-        {
-          //let's prepare our won-tied-lost string
-          var winOrLose = helper.interpretOutcome(where, homeGoals, awayGoals);
-
-          //get the smart-ass phrases and say it
-          var output = helper.sayPhrase(winOrLose);
-          console.log(output);
-
-          //pretty-print the outcome and display it
-          output = helper.formatOutcome(where, homeGoals, awayGoals, winOrLose);
-          console.log(output);
-
-        }
+        //get the smart-ass phrases and say it
+        console.log(helper.sayPhrase(winOrLose));
+      }
     }
   }
   else {
