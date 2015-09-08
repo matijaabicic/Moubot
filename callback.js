@@ -41,8 +41,8 @@ var callback = function(error, response, body){
         //say the "upcoming" phrase
         var output = where + ' match vs. ' + opponent + '. ';
         output += helper.sayPhrase("upcoming");
-        console.log(output);
-        //helper.postToSlack(helper.sayPhrase("upcoming"));
+        //console.log(output);
+        helper.postToSlack(helper.sayPhrase("upcoming"));
       }
         //debug help
         //console.log('Matchday: ' + data.fixtures[index].matchday + ' against ' + opponent + ' (' + where + ') is ' + RightNow.to(matchDateTime));
@@ -57,7 +57,8 @@ var callback = function(error, response, body){
         var winOrLose = helper.interpretOutcome(where, homeGoals, awayGoals);
 
         //get the smart-ass phrases and say it
-        console.log(helper.sayPhrase(winOrLose));
+        //console.log(helper.sayPhrase(winOrLose));
+        helper.postToSlack(helper.sayPhrase("winOrLose"));
       }
     }
   }
