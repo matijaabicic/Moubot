@@ -55,7 +55,7 @@ module.exports =  {
   //post To Slack
   postToSlack : function (phrase){
     //get the endpoint from tokens file
-    var slackToken = tokens.slackURI;
+    var slackToken = process.env.slackURI;
 
     //if not initialized, just say Hello
     phrase = phrase || this.sayHello();
