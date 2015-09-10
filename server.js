@@ -27,7 +27,7 @@ var options = {
 
 
 //spin up the listener
-server.listen(PORT, function(){
+server.listen(process.env.PORT || PORT, function(){
   //callback when server is successfully listening
   console.log("Server started at localhost:%s", PORT);
 
