@@ -21,7 +21,7 @@ var server = http.createServer(handleRequest);
 var options = {
   url: tokens.resultsEndpoint,
   headers: {
-    'X-Auth-Token' : tokens.resultsToken
+    'X-Auth-Token' : process.env.resultsToken
   }
 };
 
@@ -38,6 +38,7 @@ server.listen(PORT, function(){
 
   //set up a timer.
   setInterval(function(){
+    console.log("Tick...");
     request(options, callback.callback);
   }, settings.pingInteralInMilliseconds);
 } );
