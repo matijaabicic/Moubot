@@ -1,7 +1,7 @@
 //app-specific sentence
 
 module.exports = {
-  serverPort : 8080,
+  serverPort : 80,
   pingInteralInMilliseconds : 1000*60, // server main loop interval. 6 hours
   postBeforeTheMatch : true,
   postAfterTheMatch : true,
