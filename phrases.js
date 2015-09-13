@@ -25,13 +25,15 @@ module.exports = {
           "Unhappy is a nice word.",
           "I was nine or 10 years old and my father was sacked on Christmas Day. He was a manager, the results had not been good, he lost a game on December 22 or 23. On Christmas Day, the telephone rang and he was sacked in the middle of our lunch.",
           "At the very least we should be given a bit of credit and a little bit of space, and maybe the media should think we could help them discover why English teams do not win European competitions.",
-          "So I know all about the ups and downs of football, I know that one day I will be sacked."
+          "So I know all about the ups and downs of football, I know that one day I will be sacked.",
+          "The result does not mirror our play."
         ],
 
   'upcoming': ["It will be a tough match. They will park the bus. I know that. We must push the bus off the cliff.",
               "We will win. Nothing else to say.",
               "We have our horse today. We are ready.",
               "When I go to the press conference before the game, in my mind the game has already started.",
-              "Football is a more beautiful game in high definition. Turn off your computer and turn on the TV, we're on in 5 mintues."
+              "Football is a more beautiful game in high definition. Turn off your computer and turn on the TV, we're on in 5 mintues.",
+              "No one is better than me to lead Chelsea."
             ]
 };

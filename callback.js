@@ -51,6 +51,7 @@ var callback = function(error, response, body){
       //post-match banter
       if (settings.postAfterTheMatch &&
           (RightNow.to(matchDateTime) == settings.postMatchWindowInHours) &&
+          matchStatus == 'FINISHED' &&
           !(moment(global.lastPostMatchComment).isSame(moment(matchDateTime))))
       {
         global.lastPostMatchComment = matchDateTime;
