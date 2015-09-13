@@ -5,7 +5,8 @@ module.exports = {
           "After the victory today, all I can say is that footbal is a game about feeling and intelligence.",
           "Please don't call me arrogant, but I'm European champion and I think I'm a special one.",
           "The only thing I would like is to have more control of the game in terms of possession.",
-          "I hate to speak about individuals. Players don't win you trophies, teams win trophies, squads win trophies."
+          "I hate to speak about individuals. Players don't win you trophies, teams win trophies, squads win trophies.",
+          "Yes, another win. I am the man for the job. I don't think there is better man who could come and do my job."
         ],
 
   'tie': ["Everyone wants to park the bus...",
@@ -26,7 +27,8 @@ module.exports = {
           "I was nine or 10 years old and my father was sacked on Christmas Day. He was a manager, the results had not been good, he lost a game on December 22 or 23. On Christmas Day, the telephone rang and he was sacked in the middle of our lunch.",
           "At the very least we should be given a bit of credit and a little bit of space, and maybe the media should think we could help them discover why English teams do not win European competitions.",
           "So I know all about the ups and downs of football, I know that one day I will be sacked.",
-          "The result does not mirror our play."
+          "The result does not mirror our play.",
+          "These kinds of results are not adapted to my quality, my status, but I am coping well with the situation. I am not feeling pressure."
         ],
 
   'upcoming': ["It will be a tough match. They will park the bus. I know that. We must push the bus off the cliff.",
