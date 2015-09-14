@@ -12,9 +12,12 @@ var callback = function(error, response, body){
     //--
     //--
     var RightNow = moment.utc();
-    //debug only
-    //RightNow = moment.utc('2015-08-08T18:15');
-
+    if (settings.debug)
+    {
+      RightNow = moment.utc('2015-08-23T14:30');
+      console.log(RightNow.format());
+      console.log("lastPreMatchComment: " + lastPreMatchComment + ". lastPostMatchComment: " + lastPostMatchComment);
+    }
     var data = JSON.parse(body);
     //console.log(data);
     for (index in data.fixtures)
@@ -40,10 +43,13 @@ var callback = function(error, response, body){
         global.lastPreMatchComment = matchDateTime;
 
         //say the "upcoming" phrase
-        var output = where + ' match vs. ' + opponent + '. ';
-        output += helper.sayPhrase("upcoming");
-        //console.log(output);
-        helper.postToSlack(helper.sayPhrase("upcoming"));
+        if (!settings.debug)
+        {
+          helper.postToSlack(helper.sayPhrase("upcoming", data.fixtures[index]));
+        }
+        else {
+          console.log(helper.sayPhrase("upcoming", data.fixtures[index]));
+        }
       }
         //debug help
         //console.log('Matchday: ' + data.fixtures[index].matchday + ' against ' + opponent + ' (' + where + ') is ' + RightNow.to(matchDateTime));
@@ -60,7 +66,13 @@ var callback = function(error, response, body){
 
         //get the smart-ass phrases and say it
         //console.log(helper.sayPhrase(winOrLose));
-        helper.postToSlack(helper.sayPhrase("winOrLose"));
+        if (!settings.debug){
+          helper.postToSlack(helper.sayPhrase(winOrLose, data.fixtures[index]));
+        }
+        else {
+          console.log(winOrLose);
+          console.log(helper.sayPhrase(winOrLose, data.fixtures[index]));
+        }
       }
     }
   }

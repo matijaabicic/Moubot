@@ -1,6 +1,7 @@
 var phrases = require('./phrases');
 var tokens = require('./tokens');
 var slack = require('node-slack');
+var util = require('util');
 
 //helper functions to be called by other modules
 module.exports =  {
@@ -12,6 +13,11 @@ module.exports =  {
   //had won or lost the match
   interpretOutcome : function(where, homeGoals, awayGoals){
     //let's prepare our won-tied-lost string
+    //-1 for both teams means the game didn't begin yet.
+    if(awayGoals == -1 && homeGoals == -1)
+    {
+      return "Not started";
+    }
     if (awayGoals == homeGoals)
     {
       return "Tied";
@@ -26,18 +32,23 @@ module.exports =  {
 
   // this will be called when we're ready to say something.
   // output depends on the outcom of the match
-  sayPhrase : function(outcome){
+  sayPhrase : function(outcome, fixture){
+    var opponent = this.getOpponent(fixture);
+    var result = this.getScore(null, null, fixture);
+
     if (outcome == "Won"){
-      return(phrases.win[Math.floor(Math.random() * phrases.win.length)]);
+      return util.format(phrases.win[Math.floor(Math.random() * phrases.win.length)], result);
     }
     else if (outcome == "Tied"){
-      return phrases.tie[Math.floor(Math.random() * phrases.tie.length)];
+      return util.format(phrases.tie[Math.floor(Math.random() * phrases.tie.length)], result);
     }
     else if (outcome == "Lost") {
-      return phrases.lost[Math.floor(Math.random() * phrases.lost.length)];
+      return util.format(phrases.lost[Math.floor(Math.random() * phrases.lost.length)], result);
     }
+    //in all other cases return upcoming match wording. These are most
+    //general anyway, if we missfire, no big deal.
     else{
-      return phrases.upcoming[Math.floor(Math.random() * phrases.upcoming.length)];
+      return util.format(phrases.upcoming[Math.floor(Math.random() * phrases.upcoming.length)], opponent);
     }
   },
   //end of sayPhrase
@@ -47,10 +58,23 @@ module.exports =  {
     var output = '-- ';
     output += winOrLose + ' that one';
     output += (venue=='Home') ? ' at home' : ' away';
-    output += '. It was ' + homeGoals + ':' + awayGoals;
+    output += '. It was ' + this.getScore(homeGoals,awayGoals);
     return output;
   },
   //end of formatOutcome
+
+  //pretty print just the score parseInt
+  getScore : function(homeGoals, awayGoals, fixture)
+  {
+    //two ways of calling the function - by home, away goals explicitly OR
+    //by passing a fixture
+    if (homeGoals && awayGoals)
+    {
+      return homeGoals + ":" + awayGoals;
+    }
+    return fixture.result.goalsHomeTeam + ":" + fixture.result.goalsAwayTeam;
+  },
+  //end of getScore
 
   //post To Slack
   postToSlack : function (phrase){
@@ -60,7 +84,7 @@ module.exports =  {
     //if not initialized, just say Hello
     phrase = phrase || this.sayHello();
 
-    //test sender
+    //post it to slack channel
     var slackSender = new slack(slackToken);
     slackSender.send({
       text : phrase,
