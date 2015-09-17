@@ -6,7 +6,8 @@ module.exports = {
           "Please don't call me arrogant, but I'm European champion and I think I'm a special one. This %s win only reaffirms that.",
           "The only thing I would like is to have more control of the game in terms of possession. Otherwise, very happy with %s.",
           "I hate to speak about individuals. Players don't win you trophies, teams win trophies, squads win trophies. %s results also win you trophies.",
-          "Yes, another win. I am the man for the job. I don't think there is better man who could come and do my job. No one else could win %s here today."
+          "Yes, another win. I am the man for the job. I don't think there is better man who could come and do my job. No one else could win %s here today.",
+          "The same way I was not in hell with bad results, I am not in heaven this %s victory. It was an easy game, some players did not even sweat."
         ],
 
   'tie': ["Everyone wants to park the bus...and then you get %s.",
@@ -14,7 +15,8 @@ module.exports = {
           "So if one day the result becomes %s, for me it doesn't change my mind, because it's football, it's normal. What is not normal is that we haven't been scoring enough goals playing such good football as we've been playing in the last few weeks.",
           "%s means that we tied. That means we did not lose. It is a big difference.",
           "The moral of the story about %s is not to listen to those who tell you not to play the violin but stick to the tambourine.",
-          "He always talk talk talk, always the talking. He have a little luck, some easy opposition, I think his head is in the clouds. He forget about the international break, maybe 1 maybe 2 maybe 3 injury, we will see. This %s tie is all part of the plan."
+          "He always talk talk talk, always the talking. He have a little luck, some easy opposition, I think his head is in the clouds. He forget about the international break, maybe 1 maybe 2 maybe 3 injury, we will see. This %s tie is all part of the plan.",
+          "I am a fantastic manager when I win matches and I am a fantastic manager when I lose matches. I just don't know how to deal with this %s outcome. I'm pretty sure I'm still a fantastic manager."
         ],
 
   'lost': ["We deserved not to lose %s.",
@@ -28,7 +30,8 @@ module.exports = {
           "After this %s defeat at the very least we should be given a bit of credit and a little bit of space, and maybe the media should think we could help them discover why English teams do not win European competitions.",
           "So I know all about the ups and downs of football, I know that one day I will be sacked. Maybe if I lose %s again.",
           "The %s result does not mirror our play.",
-          "These kinds of results are not adapted to my quality, my status, but I am coping well with the situation. I am not feeling pressure. I've lost %s before and won titles."
+          "These kinds of results are not adapted to my quality, my status, but I am coping well with the situation. I am not feeling pressure. I've lost %s before and won titles.",
+          "Today's %s bad news for English football."
         ],
 
   'upcoming': ["It will be a tough match. %s will park the bus. I know that. We must push the bus off the cliff.",
@@ -36,6 +39,7 @@ module.exports = {
               "We have our horse today. We are ready for %s.",
               "When I go to the press conference before the game, in my mind the game has already started. %s is already down by 2 goals in my mind.",
               "Football is a more beautiful game in high definition. Especially when we beat %s.",
-              "No one is better than me to lead Chelsea. Match with %s is about to prove that."
+              "No one is better than me to lead Chelsea. Match with %s is about to prove that.",
+              "I have a lot of thinking always. I try to read the game before it starts and I have a lot of thinking before %s."
             ]
 };
