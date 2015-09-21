@@ -16,4 +16,10 @@ or
 
     supervisor server.js
 
+Note - if you are running with heroku local tool, you will need an .env file that contains 2 variables, one on each line in the file:
+
+    resultsToken = -- your API key for football-data.org --
+    slackURI = -- your private Slack URI. --
+
+
 Get in touch on https://twitter.com/matijaabicic
