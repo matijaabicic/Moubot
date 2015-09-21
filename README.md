@@ -12,7 +12,7 @@ You can execute Moubot in 2 ways (in both instances set debug: true in settings.
 
     node server.js
 
-    or
+or
 
     supervisor server.js
 
