@@ -2,6 +2,7 @@ var phrases = require('./phrases');
 var tokens = require('./tokens');
 var slack = require('node-slack');
 var util = require('util');
+var settings = require('./settings');
 
 //helper functions to be called by other modules
 module.exports =  {
@@ -88,7 +89,7 @@ module.exports =  {
     var slackSender = new slack(slackToken);
     slackSender.send({
       text : phrase,
-      channel: "#football"
+      channel: settings.slackChannel
     });
 
     return null;

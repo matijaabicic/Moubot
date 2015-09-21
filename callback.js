@@ -14,7 +14,7 @@ var callback = function(error, response, body){
     var RightNow = moment.utc();
     if (settings.debug)
     {
-      RightNow = moment.utc('2015-08-23T14:30');
+      RightNow = moment.utc('2015-09-19T15:43:17');
       console.log(RightNow.format());
       console.log("lastPreMatchComment: " + lastPreMatchComment + ". lastPostMatchComment: " + lastPostMatchComment);
     }
@@ -36,7 +36,14 @@ var callback = function(error, response, body){
       //only comment on the match that is about to start in 5 minutes
       //also, we don't want to comment on a match we already commented on
       if (settings.postBeforeTheMatch &&
-          (RightNow.to(matchDateTime) == settings.preMatchWindowInMinutes) &&
+          // given that Match time Mt, right now time Rt
+          // we will post when Match time is in the interval:
+          // Mt E (Rt + settings.preMatchWindowInMinutes, Rt+ settings.preMatchWindowCloseTimeInMinutesBeforeMatch)
+          // i.e. between settings.preMatchWindowCloseTimeInMinutesBeforeMatch and settings.preMatchWindowCloseTimeInMinutesBeforeMatch before the match
+          // default variables are between 5 and 1 minutes before match
+          settings.preMatchWindowCloseTimeInMinutesBeforeMatch <= matchDateTime.diff(RightNow, 'minutes') &&
+          settings.preMatchWindowInMinutes >= matchDateTime.diff(RightNow, 'minutes') &&
+          //also make sure we didn't already rant about this match
           !(moment(global.lastPreMatchComment).isSame(moment(matchDateTime))))
       {
         //remember this match date time so we don't keep saying things about it
@@ -56,7 +63,8 @@ var callback = function(error, response, body){
         //console.log('-- Date : ' + matchDateTime.format("dddd, MMMM Do YYYY, h:mm:ss a z"));
       //post-match banter
       if (settings.postAfterTheMatch &&
-          (RightNow.to(matchDateTime) == settings.postMatchWindowInHours) &&
+          settings.postMatchWindowInHours <= RightNow.diff(matchDateTime, 'hours') &&
+          settings.postMatchWindowCloseTimeInHoursAfterMatch >= RightNow.diff(matchDateTime, 'hours') &&
           matchStatus == 'FINISHED' &&
           !(moment(global.lastPostMatchComment).isSame(moment(matchDateTime))))
       {
