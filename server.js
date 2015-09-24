@@ -7,7 +7,7 @@ var settings = require('./settings');
 
 //let the server port be configurable. it really doesn't matter since this
 //is a listening port. Moubot v1 does not listen.
-var PORT = settings.serverPort;
+var PORT = settings.serverPort || process.env.PORT;
 
 //receiving and responding to requests
 function handleRequest(request, response){
@@ -27,7 +27,7 @@ var options = {
 
 
 //spin up the listener
-server.listen(process.env.PORT || PORT, function(){
+server.listen(PORT, function(){
   //callback when server is successfully listening
   console.log("Server started at localhost:%s", PORT);
 
