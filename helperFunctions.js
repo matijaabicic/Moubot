@@ -4,11 +4,20 @@ var slack = require('node-slack');
 var util = require('util');
 var settings = require('./settings');
 
+var labels = {
+  away: 'Away',
+  hello: 'Hello.',
+  lost: 'Lost',
+  notStarted: 'Not started',
+  tied: 'Tied',
+  won: 'Won'
+};
+
 //helper functions to be called by other modules
 module.exports =  {
   //tester function
   sayHello : function(){
-    return "Hello.";
+    return labels.hello;
   },
   //given where the match is, home and away goals - figure out whether we
   //had won or lost the match
@@ -17,13 +26,13 @@ module.exports =  {
     //-1 for both teams means the game didn't begin yet.
     if(awayGoals == -1 && homeGoals == -1)
     {
-      return "Not started";
+      return labels.notStarted;
     }
     if (awayGoals == homeGoals)
     {
-      return "Tied";
+      return labels.tied;
     }
-    else if ((where == "Home" && parseInt(homeGoals) < parseInt(awayGoals)) || (where == "Away" && parseInt(homeGoals) > parseInt(awayGoals)))
+    else if ((where == labels.home && parseInt(homeGoals) < parseInt(awayGoals)) || (where == labels.away && parseInt(homeGoals) > parseInt(awayGoals)))
     {
       return "Lost";
     }
@@ -40,7 +49,7 @@ module.exports =  {
     if (outcome == "Won"){
       return util.format(phrases.win[Math.floor(Math.random() * phrases.win.length)], result);
     }
-    else if (outcome == "Tied"){
+    else if (outcome == labels.tied){
       return util.format(phrases.tie[Math.floor(Math.random() * phrases.tie.length)], result);
     }
     else if (outcome == "Lost") {
@@ -98,10 +107,10 @@ module.exports =  {
 
   //based on home and away team names, evaluate whether we're playing home or away
   homeOrAway : function(fixture){
-    var where = "Away";
+    var where = labels.away;
     if (fixture.homeTeamName == tokens.myTeamName)
     {
-      where = "Home";
+      where = labels.home;
     }
     return where;
   },
