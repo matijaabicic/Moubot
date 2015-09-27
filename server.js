@@ -10,7 +10,6 @@ global.nextMatch = null;
 
 //let the server port be configurable. it really doesn't matter since this
 //is a listening port. Moubot v1 does not listen.
-var PORT = settings.serverPort || process.env.PORT;
 
 //receiving and responding to requests
 function handleRequest(request, response){
@@ -30,7 +29,7 @@ var options = {
 
 
 //spin up the listener
-server.listen(PORT, function(){
+server.listen(process.env.PORT || PORT, function(){
   //callback when server is successfully listening
   console.log("Server started at localhost:%s", PORT);
 
