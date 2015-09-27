@@ -7,6 +7,7 @@ var settings = require('./settings');
 
 //set the global variable to hold the time to next match
 global.nextMatch = null;
+global.nextOpponent = null;
 
 //let the server port be configurable. it really doesn't matter since this
 //is a listening port. Moubot v1 does not listen.
@@ -15,7 +16,7 @@ var PORT = settings.serverPort;
 //receiving and responding to requests
 function handleRequest(request, response){
   //no interaction with the server just yet.
-  response.end('No interactions allowed. Next match is ' + (nextMatch || 'not scheduled.'));
+  response.end('Next match is ' + (nextMatch || 'not scheduled') + '.');
 }
 
 var server = http.createServer(handleRequest);

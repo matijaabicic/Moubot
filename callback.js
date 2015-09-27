@@ -20,6 +20,7 @@ var callback = function(error, response, body){
     }
     var data = JSON.parse(body);
     //console.log(data);
+
     //figure out when the next match date is and humanize it.
     for (var index in data.fixtures)
     {
@@ -28,7 +29,7 @@ var callback = function(error, response, body){
           nextMatch = RightNow.to(nextMatchDate);
           break;
         }
-    };
+    }
 
     for (index in data.fixtures)
     {
