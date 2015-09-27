@@ -10,6 +10,7 @@ global.nextMatch = null;
 
 //let the server port be configurable. it really doesn't matter since this
 //is a listening port. Moubot v1 does not listen.
+var PORT = settings.serverPort;
 
 //receiving and responding to requests
 function handleRequest(request, response){
