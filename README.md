@@ -21,5 +21,6 @@ Note - if you are running with heroku local tool, you will need an .env file tha
     resultsToken = -- your API key for football-data.org --
     slackURI = -- your private Slack URI. --
 
+![Alt text](images/MourinhoInAction.png?raw=true "Moubot in Action")
 
 Get in touch on https://twitter.com/matijaabicic
