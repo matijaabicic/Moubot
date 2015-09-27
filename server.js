@@ -5,6 +5,9 @@ var tokens = require('./tokens');
 var callback = require('./callback');
 var settings = require('./settings');
 
+//set the global variable to hold the time to next match
+global.nextMatch = null;
+
 //let the server port be configurable. it really doesn't matter since this
 //is a listening port. Moubot v1 does not listen.
 var PORT = settings.serverPort || process.env.PORT;
@@ -12,7 +15,7 @@ var PORT = settings.serverPort || process.env.PORT;
 //receiving and responding to requests
 function handleRequest(request, response){
   //no interaction with the server just yet.
-  response.end('No interactions allowed.');
+  response.end('No interactions allowed. Next match is ' + (nextMatch || 'not scheduled.'));
 }
 
 var server = http.createServer(handleRequest);
@@ -38,7 +41,7 @@ server.listen(PORT, function(){
 
   //set up a timer.
   setInterval(function(){
-    console.log("Tick...");
+    console.log("Tick...next match is " + (nextMatch || "not scheduled.") );
     request(options, callback.callback);
   }, settings.pingInteralInMilliseconds);
 } );

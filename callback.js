@@ -20,6 +20,16 @@ var callback = function(error, response, body){
     }
     var data = JSON.parse(body);
     //console.log(data);
+    //figure out when the next match date is and humanize it.
+    for (var index in data.fixtures)
+    {
+        var nextMatchDate = moment.utc(data.fixtures[index].date);
+        if (RightNow.isBefore(moment.utc(data.fixtures[index].date))){
+          nextMatch = RightNow.to(nextMatchDate);
+          break;
+        }
+    };
+
     for (index in data.fixtures)
     {
       //pick up the match date time and set the flag to utc
