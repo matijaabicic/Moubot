@@ -16,17 +16,12 @@ global.nextOpponent = null;
 var PORT = settings.serverPort;
 var index = fs.readFileSync('web/index.html');
 
-//receiving and responding to requests
-function handleRequest(request, response){
-  //no interaction with the server just yet.
-  //response.end('Next match is ' + (nextMatch || 'not scheduled') + '.');
-  response.end(index);
-}
-
-//var server = http.createServer(handleRequest);
+//initiate the express web app
 var app = express();
-app.get('/', function(req, res){
-  res.send('Working!');
+
+//make all routes go to default one
+app.get('/*', function(req, res){
+  res.send('Next match is ' + (nextMatch || 'not scheduled') + '.');
 });
 
 
