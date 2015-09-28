@@ -1,6 +1,7 @@
 // add http module and client
 var http = require('http');
 var fs = require('fs');
+var express = require('express');
 var request = require('request');
 var tokens = require('./tokens');
 var callback = require('./callback');
@@ -22,7 +23,12 @@ function handleRequest(request, response){
   response.end(index);
 }
 
-var server = http.createServer(handleRequest);
+//var server = http.createServer(handleRequest);
+var app = express();
+app.get('/', function(req, res){
+  res.send('Working!');
+});
+
 
 //let's define options for our recurrent http request
 var options = {
@@ -33,9 +39,7 @@ var options = {
 };
 
 
-//spin up the listener
-server.listen(process.env.PORT || PORT, function(){
-  //callback when server is successfully listening
+var server = app.listen(process.env.PORT || PORT, function(){
   console.log("Server started at localhost:%s", PORT);
 
   //keep a track of last matchday commented, to avoid duplicates.
@@ -48,4 +52,4 @@ server.listen(process.env.PORT || PORT, function(){
     console.log("Tick...next match is " + (nextMatch || "not scheduled.") );
     request(options, callback.callback);
   }, settings.pingInteralInMilliseconds);
-} );
+});
