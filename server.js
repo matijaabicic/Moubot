@@ -1,5 +1,6 @@
 // add http module and client
 var http = require('http');
+var fs = require('fs');
 var request = require('request');
 var tokens = require('./tokens');
 var callback = require('./callback');
@@ -12,11 +13,13 @@ global.nextOpponent = null;
 //let the server port be configurable. it really doesn't matter since this
 //is a listening port. Moubot v1 does not listen.
 var PORT = settings.serverPort;
+var index = fs.readFileSync('web/index.html');
 
 //receiving and responding to requests
 function handleRequest(request, response){
   //no interaction with the server just yet.
-  response.end('Next match is ' + (nextMatch || 'not scheduled') + '.');
+  //response.end('Next match is ' + (nextMatch || 'not scheduled') + '.');
+  response.end(index);
 }
 
 var server = http.createServer(handleRequest);
