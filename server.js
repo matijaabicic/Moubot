@@ -1,6 +1,5 @@
 // add http module and client
 var http = require('http');
-var fs = require('fs');
 var express = require('express');
 var request = require('request');
 var tokens = require('./tokens');
@@ -14,13 +13,13 @@ global.nextOpponent = null;
 //let the server port be configurable. it really doesn't matter since this
 //is a listening port. Moubot v1 does not listen.
 var PORT = settings.serverPort;
-var index = fs.readFileSync('web/index.html');
 
 //initiate the express web app
 var app = express();
+app.use(express.static(__dirname + '/web'));
 
-//make all routes go to default one
-app.get('/*', function(req, res){
+app.get('/api', function(req, res){
+  //res.send(index);
   res.send('Next match is ' + (nextMatch || 'not scheduled') + '.');
 });
 
