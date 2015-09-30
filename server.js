@@ -18,6 +18,8 @@ var PORT = settings.serverPort;
 var app = express();
 app.use(express.static(__dirname + '/web'));
 
+//api call that returns the infomation about the next match. this needs to
+//be tidyed up.
 app.get('/api', function(req, res){
   //res.send(index);
   res.send('Next match is ' + (nextMatch || 'not scheduled') + '.');
