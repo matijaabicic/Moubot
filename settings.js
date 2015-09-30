@@ -10,5 +10,5 @@ module.exports = {
   preMatchWindowInMinutes: 5, // time before the match in minutes when we are ready to rant
   preMatchWindowCloseTimeInMinutesBeforeMatch: 1, //time before the match in minutes when ranting closes
   postMatchWindowInHours: 2,  // time after then match in hours when we are ready to rant
-  postMatchWindowCloseTimeInHoursAfterMatch: 6 // time after the match in hours when rant window closes
+  postMatchWindowCloseTimeInHoursAfterMatch: 12 // time after the match in hours when rant window closes
 };
