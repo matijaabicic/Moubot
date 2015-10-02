@@ -5,6 +5,7 @@ var request = require('request');
 var tokens = require('./tokens');
 var callback = require('./callback');
 var settings = require('./settings');
+var ua = require('universal-analytics');
 
 //set the global variable to hold the time to next match
 global.nextMatch = null;
@@ -14,14 +15,20 @@ global.nextOpponent = null;
 //is a listening port. Moubot v1 does not listen.
 var PORT = settings.serverPort;
 
+//initialize Google Analytics
+var visitor = ua(settings.GA);
+
 //initiate the express web app
 var app = express();
 app.use(express.static(__dirname + '/web'));
+app.use(ua.middleware(settings.GA));
+
 
 //api call that returns the infomation about the next match. this needs to
 //be tidyed up.
 app.get('/api', function(req, res){
   //res.send(index);
+  visitor.pageview("/api").send();
   res.send('Next match is ' + (nextMatch || 'not scheduled') + '.');
 });
 
