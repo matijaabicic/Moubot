@@ -35,7 +35,7 @@ app.get('/api', function(req, res){
 //early slack api. only knows how to respond with the time till next match
 app.get('/api/slack', function(req, res){
   visitor.pageview("/api/slack").send();
-  res.send('{ text: "Next match is ' + (nextMatch || 'not scheduled') + '."}');
+  res.send('{ "text": "Next match is ' + (nextMatch || 'not scheduled') + '."}');
 });
 
 //let's define options for our recurrent http request
