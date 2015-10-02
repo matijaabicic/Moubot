@@ -27,6 +27,6 @@ Note - if you are running with heroku local tool, you will need an .env file tha
 
     When you have these two keys, you are ready to deploy to Heroku:
 
-    [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/matijaabicic/Moubot)
+    [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/matijaabicic/Moubot)
 
 Get in touch on https://twitter.com/matijaabicic
