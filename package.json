@@ -1,19 +1,30 @@
 {
   "name": "Moubot",
-  "version": "0.1.2",
-  "description": "Mourinho Slack Bot",
-  "main": "index.js",
+  "version": "0.2.0",
+  "description": "Mourinho Slack Bot - rants in your Slack channel before and after every Chelsea FC match.",
+  "main": "server.js",
+  "dependencies": {
+    "express": "~4.13.3",
+    "moment": "~2.10.6",
+    "node-slack": "~0.0.7",
+    "request": "~2.61.0",
+    "universal-analytics": "~0.3.9"
+  },
+  "devDependencies": {},
   "scripts": {
-    "test": "test"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/matijaabicic/Moubot"
+    "url": "git+ssh://git@github.com/matijaabicic/Moubot.git"
   },
   "keywords": [
-    "mourinho",
-    "slack",
-    "bot"
+    "Mourinho",
+    "Moubot",
+    "Slackbot",
+    "Slack",
+    "Chelsea"
   ],
   "author": "@matijaabicic",
   "license": "MIT",

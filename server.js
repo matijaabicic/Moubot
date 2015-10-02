@@ -1,9 +1,11 @@
 // add http module and client
 var http = require('http');
+var express = require('express');
 var request = require('request');
 var tokens = require('./tokens');
 var callback = require('./callback');
 var settings = require('./settings');
+var ua = require('universal-analytics');
 
 //set the global variable to hold the time to next match
 global.nextMatch = null;
@@ -13,13 +15,28 @@ global.nextOpponent = null;
 //is a listening port. Moubot v1 does not listen.
 var PORT = settings.serverPort;
 
-//receiving and responding to requests
-function handleRequest(request, response){
-  //no interaction with the server just yet.
-  response.end('Next match is ' + (nextMatch || 'not scheduled') + '.');
-}
+//initialize Google Analytics
+var visitor = ua(settings.GA);
 
-var server = http.createServer(handleRequest);
+//initiate the express web app
+var app = express();
+app.use(express.static(__dirname + '/web'));
+app.use(ua.middleware(settings.GA));
+
+
+//api call that returns the infomation about the next match. this needs to
+//be tidyed up.
+app.get('/api', function(req, res){
+  //google pageview tracking
+  visitor.pageview("/api").send();
+  res.send('Next match is ' + (nextMatch || 'not scheduled') + '.');
+});
+
+//early slack api. only knows how to respond with the time left until the next match
+app.get('/api/slack', function(req, res){
+  visitor.pageview("/api/slack").send();
+  res.send('{ "text": "Next match is ' + (nextMatch || 'not scheduled') + '."}');
+});
 
 //let's define options for our recurrent http request
 var options = {
@@ -30,9 +47,7 @@ var options = {
 };
 
 
-//spin up the listener
-server.listen(process.env.PORT || PORT, function(){
-  //callback when server is successfully listening
+var server = app.listen(process.env.PORT || PORT, function(){
   console.log("Server started at localhost:%s", PORT);
 
   //keep a track of last matchday commented, to avoid duplicates.
@@ -45,4 +60,4 @@ server.listen(process.env.PORT || PORT, function(){
     console.log("Tick...next match is " + (nextMatch || "not scheduled.") );
     request(options, callback.callback);
   }, settings.pingInteralInMilliseconds);
-} );
+});
