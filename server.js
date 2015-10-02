@@ -32,7 +32,7 @@ app.get('/api', function(req, res){
   res.send('Next match is ' + (nextMatch || 'not scheduled') + '.');
 });
 
-//early slack api. only knows how to respond with the time till next match
+//early slack api. only knows how to respond with the time left until the next match
 app.get('/api/slack', function(req, res){
   visitor.pageview("/api/slack").send();
   res.send('{ "text": "Next match is ' + (nextMatch || 'not scheduled') + '."}');
