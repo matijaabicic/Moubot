@@ -27,11 +27,16 @@ app.use(ua.middleware(settings.GA));
 //api call that returns the infomation about the next match. this needs to
 //be tidyed up.
 app.get('/api', function(req, res){
-  //res.send(index);
+  //google pageview tracking
   visitor.pageview("/api").send();
   res.send('Next match is ' + (nextMatch || 'not scheduled') + '.');
 });
 
+//early slack api. only knows how to respond with the time till next match
+app.get('/api/slack', function(req, res){
+  visitor.pageview("/api/slack").send();
+  res.send('{ text: "Next match is ' + (nextMatch || 'not scheduled') + '."}');
+});
 
 //let's define options for our recurrent http request
 var options = {
