@@ -3,5 +3,9 @@
   "description": "Mourinho Slack Bot - whines in your slack channel before and after every Chelsea FC Match.",
   "repository": "https://github.com/matijaabicic/Moubot",
   "logo": "http://www.moubot.com/img/mourinho.jpg",
-  "keywords": ["Mourinho", "Mou", "Moubot", "Slack", "Node", "NodeJS", "Chelsea", "Football"]
+  "keywords": ["Mourinho", "Mou", "Moubot", "Slack", "Node", "NodeJS", "Chelsea", "Football"],
+  "env": {
+        "resultsToken": "-- your own football-data.org api token --",
+        "slackURI": "-- your own slack incoming webhook uri --"
+    }
 }
