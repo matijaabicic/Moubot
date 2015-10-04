@@ -31,7 +31,9 @@ module.exports = {
           "So I know all about the ups and downs of football, I know that one day I will be sacked. Maybe if I lose %s again.",
           "The %s result does not mirror our play.",
           "These kinds of results are not adapted to my quality, my status, but I am coping well with the situation. I am not feeling pressure. I've lost %s before and won titles.",
-          "Today's %s bad news for English football."
+          "Today's %s bad news for English football.",
+          "That was a giant penalty that was not given to us. %s would not happen if the referee was not scared to make a decision for Chelsea. They always scared to be fair and we suffer.",
+          "If the club wants to sack me after %s, they will sack. They will sack the best manager to ever lead this club."
         ],
 
   'upcoming': ["It will be a tough match. %s will park the bus. I know that. We must push the bus off the cliff.",
