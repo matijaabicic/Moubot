@@ -29,13 +29,13 @@ app.use(ua.middleware(settings.GA));
 app.get('/api', function(req, res){
   //google pageview tracking
   visitor.pageview("/api").send();
-  res.send('Next match is ' + (nextMatch || 'not scheduled') + '.');
+  res.send('Next Chelsea match is ' + (nextMatch || 'not scheduled') + '.');
 });
 
 //early slack api. only knows how to respond with the time left until the next match
 app.get('/api/slack', function(req, res){
   visitor.pageview("/api/slack").send();
-  res.send('{ "text": "Next match is ' + (nextMatch || 'not scheduled') + '."}');
+  res.send('{ "text": "Next Chelsea match is ' + (nextMatch || 'not scheduled') + '."}');
 });
 
 //let's define options for our recurrent http request
