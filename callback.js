@@ -14,9 +14,7 @@ var callback = function(error, response, body){
     var RightNow = moment.utc();
     if (settings.debug)
     {
-      RightNow = moment.utc('2015-09-19T15:43:17');
-      console.log(RightNow.format());
-      console.log("lastPreMatchComment: " + lastPreMatchComment + ". lastPostMatchComment: " + lastPostMatchComment);
+      RightNow = moment.utc('2015-09-26T19:25:00'); //just before Newcastle match
     }
     var data = JSON.parse(body);
     //console.log(data);
@@ -69,9 +67,6 @@ var callback = function(error, response, body){
           console.log(helper.sayPhrase("upcoming", data.fixtures[index]));
         }
       }
-        //debug help
-        //console.log('Matchday: ' + data.fixtures[index].matchday + ' against ' + opponent + ' (' + where + ') is ' + RightNow.to(matchDateTime));
-        //console.log('-- Date : ' + matchDateTime.format("dddd, MMMM Do YYYY, h:mm:ss a z"));
       //post-match banter
       if (settings.postAfterTheMatch &&
           settings.postMatchWindowInHours <= RightNow.diff(matchDateTime, 'hours') &&
@@ -84,12 +79,10 @@ var callback = function(error, response, body){
         var winOrLose = helper.interpretOutcome(where, homeGoals, awayGoals);
 
         //get the smart-ass phrases and say it
-        //console.log(helper.sayPhrase(winOrLose));
         if (!settings.debug){
           helper.postToSlack(helper.sayPhrase(winOrLose, data.fixtures[index]));
         }
         else {
-          console.log(winOrLose);
           console.log(helper.sayPhrase(winOrLose, data.fixtures[index]));
         }
       }
