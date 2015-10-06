@@ -56,5 +56,9 @@ describe(phraseReplacer, function(){
       var result = phraseReplacer.replace("test %s", {"s":["test"]});
       expect(result).to.be.equal("test test");
     });
+    it("phrase only contains a tag and nothing else", function(){
+      var result = phraseReplacer.replace("%s", {"s":["test"]});
+      expect(result).to.be.equal("test");
+    });
   });
 });
