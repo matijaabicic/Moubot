@@ -60,5 +60,9 @@ describe(phraseReplacer, function(){
       var result = phraseReplacer.replace("%s", {"s":["test"]});
       expect(result).to.be.equal("test");
     });
+    it("phrase contains columns", function(){
+      var result = phraseReplacer.replace("test %s test", {"s":["2:2"]});
+      expect(result).to.be.equal("test 2:2 test");
+    });
   });
 });

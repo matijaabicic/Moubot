@@ -1,3 +1,9 @@
+//PLACEHOLDER CONVENTIONS
+
+//  %s - score
+//  %t - team
+//  %o - opponent
+
 module.exports = {
   'win': ["Easy %s victory.",
           "That was good training match. We too good. %s is lucky for them, could have been worse for them.",
@@ -36,12 +42,12 @@ module.exports = {
           "If the club wants to sack me after %s, they will sack. They will sack the best manager to ever lead this club."
         ],
 
-  'upcoming': ["It will be a tough match. %s will park the bus. I know that. We must push the bus off the cliff.",
-              "We will win. It's nice from %s to play with us but we will win. Nothing else to say.",
-              "We have our horse today. We are ready for %s.",
-              "When I go to the press conference before the game, in my mind the game has already started. %s is already down by 2 goals in my mind.",
-              "Football is a more beautiful game in high definition. Especially when we beat %s.",
-              "No one is better than me to lead Chelsea. Match with %s is about to prove that.",
-              "I have a lot of thinking always. I try to read the game before it starts and I have a lot of thinking before %s."
+  'upcoming': ["It will be a tough match. %o will park the bus. I know that. We must push the bus off the cliff.",
+              "We will win. It's nice from %o to play with us but we will win. Nothing else to say.",
+              "We have our horse today. We are ready for %o.",
+              "When I go to the press conference before the game, in my mind the game has already started. %o is already down by 2 goals in my mind.",
+              "Football is a more beautiful game in high definition. Especially when we beat %o.",
+              "No one is better than me to lead Chelsea. Match with %o is about to prove that.",
+              "I have a lot of thinking always. I try to read the game before it starts and I have a lot of thinking before %o."
             ]
 };

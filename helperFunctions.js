@@ -1,8 +1,8 @@
 var phrases = require('./phrases');
 var tokens = require('./tokens');
 var slack = require('node-slack');
-var util = require('util');
 var settings = require('./settings');
+var replacer = require('./lib/phrase-replacer');
 
 var labels = {
   away: 'Away',
@@ -46,22 +46,39 @@ module.exports =  {
     var opponent = this.getOpponent(fixture);
     var result = this.getScore(null, null, fixture);
 
+    //construct the eobject to be passed to replacer
+    var replacements = this.buildReplacements(opponent, result);
+
     if (outcome == "Won"){
-      return util.format(phrases.win[Math.floor(Math.random() * phrases.win.length)], result);
+      return replacer.replace(phrases.win[Math.floor(Math.random() * phrases.win.length)], replacements);
     }
     else if (outcome == labels.tied){
-      return util.format(phrases.tie[Math.floor(Math.random() * phrases.tie.length)], result);
+      return replacer.replace(phrases.tie[Math.floor(Math.random() * phrases.tie.length)], replacements);
     }
     else if (outcome == "Lost") {
-      return util.format(phrases.lost[Math.floor(Math.random() * phrases.lost.length)], result);
+      return replacer.replace(phrases.lost[Math.floor(Math.random() * phrases.lost.length)], replacements);
     }
     //in all other cases return upcoming match wording. These are most
     //general anyway, if we missfire, no big deal.
     else{
-      return util.format(phrases.upcoming[Math.floor(Math.random() * phrases.upcoming.length)], opponent);
+      return replacer.replace(phrases.upcoming[Math.floor(Math.random() * phrases.upcoming.length)], replacements);
     }
   },
   //end of sayPhrase
+
+  //buildReplacements
+  buildReplacements : function(opponent, score){
+
+    if (!(opponent || score)) return null;
+
+    var replacementObject = {};
+
+    if (opponent) replacementObject.o = [opponent];
+    if (score) replacementObject.s = [score];
+
+    return replacementObject;
+  },
+  //end of buildReplacements
 
   //this helper will pretty-print the outcome of the match
   formatOutcome : function(venue, homeGoals, awayGoals, winOrLose){

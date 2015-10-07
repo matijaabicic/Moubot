@@ -14,7 +14,7 @@ var callback = function(error, response, body){
     var RightNow = moment.utc();
     if (settings.debug)
     {
-      RightNow = moment.utc('2015-09-26T19:25:00'); //just before Newcastle match
+      RightNow = moment.utc('2015-08-23T15:25:00'); //just after west brom match
     }
     var data = JSON.parse(body);
     //console.log(data);
