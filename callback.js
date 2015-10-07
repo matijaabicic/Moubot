@@ -1,5 +1,5 @@
 var moment  = require('moment');
-var helper  = require('./helperFunctions');
+var helper  = require('./lib/helperFunctions');
 var settings = require('./settings');
 
 var callback = function(error, response, body){
