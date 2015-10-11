@@ -55,7 +55,7 @@ app.get('/api/slack', function(req, res){
   //construc the response
   var jsonResponse = {};
   jsonResponse.text = 'Next Chelsea match is ' + (nextMatch || 'not scheduled' + '.');
-  jsonResponse.nextMatchDaate = nextMatch;
+  jsonResponse.nextMatchDate = nextMatch;
   jsonResponse.nextOpponent = nextOpponent;
   //console.log(req);
   res.send(jsonResponse);

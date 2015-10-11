@@ -1,6 +1,6 @@
 {
   "name": "Moubot",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Mourinho Slack Bot - rants in your Slack channel before and after every Chelsea FC match.",
   "main": "server.js",
   "dependencies": {
