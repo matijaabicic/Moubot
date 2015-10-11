@@ -22,7 +22,17 @@ var visitor = ua(settings.GA);
 var app = express();
 app.use(express.static(__dirname + '/web'));
 app.use(ua.middleware(settings.GA));
+app.use(allowCrossDomain);
 
+//function to help with cross-site scripting
+function allowCrossDomain(req, res, next) {
+  res.setHeader('Access-Control-Allow-Methods', '*');
+  if (req.method === 'OPTIONS') {
+    res.send(200);
+  } else {
+    next();
+  }
+}
 
 //api call that returns the infomation about the next match. this needs to
 //be tidyed up.

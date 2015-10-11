@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Mourihno Slack Bot">
-    <meta name="author" content="Matija Abicic @matijaabiic">
+    <meta name="author" content="Matija Abicic @matijaabicic">
 
     <title>Moubot</title>
 
@@ -28,6 +28,39 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <!-- document ready script -->
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript">
+      $( document ).ready(function() {
+        // this is running client-side so we can't pick up the match info from global variable
+        //call api
+        var nextMatchUri = 'api/slack';
+
+        //get data from local api and modify the page
+        requestJSON(nextMatchUri, function(json) {
+          $('#nextMatchDetails').html('<p>' + json.text + '</p>');
+        });
+
+        //helper function to call the api
+        function requestJSON(url, callback) {
+          $.ajax({
+            url: url,
+            success: function(json) {
+              callback(json);
+            },
+            type: "GET",
+            dataType: "json",
+            error: function( xhr, status, errorThrown ) {
+              $('#nextMatchDetails').html('<p>Moubot has no idea when the next match is scheduled.</p>');
+              console.log( "Error: " + errorThrown );
+              console.log( "Status: " + status );
+              console.dir( xhr );
+            }
+          });
+        }
+      });
+
+    </script>
 
 </head>
 
@@ -86,6 +119,21 @@
             </div>
         </div>
     </header>
+
+    <!-- Next Match Section -->
+
+    <section id="nextMatch">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h1>Next match</h1><br/>
+            <div id="nextMatchDetails"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- End of next match section -->
 
     <!-- API Section -->
     <section id="api" class="success">
