@@ -44,12 +44,20 @@ app.get('/api', function(req, res){
 
 //early slack api. only knows how to respond with the time left until the next match
 app.get('/api/slack', function(req, res){
-  visitor.pageview("/api/slack").send();
+  var originHost = req.headers.host;
+
+  //exclude local api requests from Google Analytics tracking
+  if(settings.gaIgnoreHosts.indexOf(req.header.host)!=-1){
+    console.log('tracking request in analytics.');
+    visitor.pageview("/api/slack").send();
+  }
+
+  //construc the response
   var jsonResponse = {};
   jsonResponse.text = 'Next Chelsea match is ' + (nextMatch || 'not scheduled' + '.');
   jsonResponse.nextMatchDaate = nextMatch;
   jsonResponse.nextOpponent = nextOpponent;
-
+  //console.log(req);
   res.send(jsonResponse);
 });
 
