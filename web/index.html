@@ -38,7 +38,14 @@
 
         //get data from local api and modify the page
         requestJSON(nextMatchUri, function(json) {
-          $('#nextMatchDetails').html('<p>' + json.text + '</p>');
+          var outHtml = '<p>' + json.text;
+
+          //only append next opponent when match is actually scheduled
+          if (json.nextOpponent){
+            outHtml = outHtml + ' vs. ' + json.nextOpponent;
+          }
+          outHtml += '</p>';
+          $('#nextMatchDetails').html(outHtml);
         });
 
         //helper function to call the api

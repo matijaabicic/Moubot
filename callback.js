@@ -20,11 +20,14 @@ var callback = function(error, response, body){
     //console.log(data);
 
     //figure out when the next match date is and humanize it.
+    //given that fixtures come in order in the JSON response, the first one
+    //we find AFTER "right now" is our next fixture.
     for (var index in data.fixtures)
     {
         var nextMatchDate = moment.utc(data.fixtures[index].date);
         if (RightNow.isBefore(moment.utc(data.fixtures[index].date))){
           nextMatch = RightNow.to(nextMatchDate);
+          nextOpponent = helper.getOpponent(data.fixtures[index]);
           break;
         }
     }
