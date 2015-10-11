@@ -7,9 +7,10 @@ var callback = require('./callback');
 var settings = require('./settings');
 var ua = require('universal-analytics');
 
-//set the global variable to hold the time to next match
+//set the global variable to hold the time to next match, last phrase that Moubot said etc.
 global.nextMatch = null;
 global.nextOpponent = null;
+global.lastPhrase = null;
 
 //let the server port be configurable. it really doesn't matter since this
 //is a listening port. Moubot v1 does not listen.
@@ -57,6 +58,7 @@ app.get('/api/slack', function(req, res){
   jsonResponse.text = 'Next Chelsea match is ' + (nextMatch || 'not scheduled' + '.');
   jsonResponse.nextMatchDaate = nextMatch;
   jsonResponse.nextOpponent = nextOpponent;
+  jsonResponse.lastPhrase = lastPhrase;
   //console.log(req);
   res.send(jsonResponse);
 });

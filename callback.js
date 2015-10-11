@@ -64,7 +64,11 @@ var callback = function(error, response, body){
         //say the "upcoming" phrase
         if (!settings.debug)
         {
-          helper.postToSlack(helper.sayPhrase("upcoming", data.fixtures[index]));
+          var phraseToSay = helper.sayPhrase("upcoming", data.fixtures[index]);
+
+          //post the phrase to slack and remember it in a global variable to be accessible to API calls
+          helper.postToSlack(phraseToSay);
+          global.lastPhrase = phraseToSay;
         }
         else {
           console.log(helper.sayPhrase("upcoming", data.fixtures[index]));
@@ -80,10 +84,12 @@ var callback = function(error, response, body){
         global.lastPostMatchComment = matchDateTime;
         //let's prepare our won-tied-lost string
         var winOrLose = helper.interpretOutcome(where, homeGoals, awayGoals);
-
         //get the smart-ass phrases and say it
         if (!settings.debug){
-          helper.postToSlack(helper.sayPhrase(winOrLose, data.fixtures[index]));
+          var phraseToSayAfterMatch = helper.sayPhrase(winOrLose, data.fixtures[index]);
+
+          helper.postToSlack(phraseToSayAfterMatch);
+          global.lastPhrase = phraseToSayAfterMatch;
         }
         else {
           console.log(helper.sayPhrase(winOrLose, data.fixtures[index]));
