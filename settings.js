@@ -1,7 +1,7 @@
 //app-specific sentence
 
 module.exports = {
-  debug : false,
+  debug : true,
   slackChannel : "#football",
   serverPort : 8080,
   pingInteralInMilliseconds : 1000 * 60, // server main loop interval.
