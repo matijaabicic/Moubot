@@ -1,0 +1,41 @@
+/*
+
+Stylesheet that defines custom Moubot elements on the Mouweb
+
+*/
+
+div.last-phrase {
+  color: #C4C4C4;
+  padding-top: 50px;
+  font-size: 22px;
+  font-style: italic;
+}
+
+div.last-phrase::before{
+  content: open-quote;
+}
+
+div.last-phrase::after{
+  content: close-quote;
+}
+
+p.moubot::before {
+  content: open-quote;
+}
+
+p.moubot::after {
+  content: close-quote;
+}
+
+div.moubot {
+  visibility: hidden;
+}
+
+div.paddedMoubot {
+  padding-top: 50px;
+}
+
+footer.moubot{
+  color: #C4C4C4;
+  font-style: italic;
+}

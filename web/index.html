@@ -16,6 +16,7 @@
 
     <!-- Custom CSS -->
     <link href="css/freelancer.css" rel="stylesheet">
+    <link href="css/moubot.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -46,6 +47,14 @@
           }
           outHtml += '</p>';
           $('#nextMatchDetails').html(outHtml);
+
+          //if we have the last phrase, remove invisibility style
+          //and set the last phrase
+          if(json.lastPhrase){
+            $('#MoubotBlockQuote').removeClass("moubot");
+            $('#moubotQuote').html(json.lastPhrase);
+          }
+
         });
 
         //helper function to call the api
@@ -122,6 +131,12 @@
                         <br/><br/>
                         <img src="img/MourinhoInAction.png" style="box-shadow: 10px 10px 5px #446280;" width="100%" height="100%"/>
                     </div>
+                </div>
+                <div id="MoubotBlockQuote" class="paddedMoubot moubot col-lg-6 col-lg-offset-3">
+                  <blockquote>
+                    <p id="moubotQuote" class="moubot"></p>
+                    <footer class="moubot">Moubot</footer>
+                  </blockquote>
                 </div>
             </div>
         </div>
