@@ -75,9 +75,21 @@
           });
         }
       });
-
     </script>
-
+    <script>
+    /**
+    * Function that tracks a click on an outbound link in Google Analytics.
+    * This function takes a valid URL string as an argument, and uses that URL string
+    * as the event label.
+    */
+      var trackOutboundLink = function(url) {
+        ga('send', 'event', 'outbound', 'click', url, {'hitCallback':
+          function () {
+            document.location = url;
+          }
+        });
+      }
+    </script>
 </head>
 
 <body id="page-top" class="index">
@@ -143,7 +155,6 @@
     </header>
 
     <!-- Next Match Section -->
-
     <section id="nextMatch">
       <div class="container">
         <div class="row">
@@ -154,7 +165,6 @@
         </div>
       </div>
     </section>
-
     <!-- End of next match section -->
 
     <!-- API Section -->
@@ -196,7 +206,7 @@
               </div>
             </div>
             <div class="row text-center">
-              <a href="https://heroku.com/deploy?template=https://github.com/matijaabicic/Moubot" target="_blank"><img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy"></a>
+              <a href="https://heroku.com/deploy?template=https://github.com/matijaabicic/Moubot" target="_blank"><img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy" onclick="trackOutboundLink('http://www.heroku.com'); return false;"></a>
             </div>
     </section>
 
@@ -214,7 +224,7 @@
                     <p>Contribute on Github. Help make Moubot even more awesome.</p>
                 </div>
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <a href="https://www.github.com/matijaabicic/Moubot" target="_blank" class="btn btn-lg btn-outline">
+                    <a href="https://www.github.com/matijaabicic/Moubot" target="_blank" class="btn btn-lg btn-outline" onclick="trackOutboundLink('http://www.github.com/matijaabicic/Moubot'); return false;">
                         <i class="fa fa-github"></i> Fork me on Github
                     </a>
                 </div>
