@@ -4,7 +4,7 @@ module.exports = {
   debug : true,
   slackChannel : "#football",
   serverPort : 8080,
-  pingInteralInMilliseconds : 1000 * 60, // server main loop interval.
+  pingInteralInMilliseconds : 1000,// * 60, // server main loop interval.
   postBeforeTheMatch : true,
   postAfterTheMatch : true,
   preMatchWindowInMinutes: 5, // time before the match in minutes when we are ready to rant
