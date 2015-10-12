@@ -60,19 +60,19 @@ var callback = function(error, response, body){
       {
         //remember this match date time so we don't keep saying things about it
         global.lastPreMatchComment = matchDateTime;
+        var phraseToSay = helper.sayPhrase("upcoming", data.fixtures[index]);
 
         //say the "upcoming" phrase
         if (!settings.debug)
         {
-          var phraseToSay = helper.sayPhrase("upcoming", data.fixtures[index]);
-
           //post the phrase to slack and remember it in a global variable to be accessible to API calls
           helper.postToSlack(phraseToSay);
-          global.lastPhrase = phraseToSay;
         }
         else {
           console.log(helper.sayPhrase("upcoming", data.fixtures[index]));
         }
+        //remember the last phrase in a global variable
+        global.lastPhrase = phraseToSay;
       }
       //post-match banter
       if (settings.postAfterTheMatch &&
@@ -84,16 +84,16 @@ var callback = function(error, response, body){
         global.lastPostMatchComment = matchDateTime;
         //let's prepare our won-tied-lost string
         var winOrLose = helper.interpretOutcome(where, homeGoals, awayGoals);
+        var phraseToSayAfterMatch = helper.sayPhrase(winOrLose, data.fixtures[index]);
         //get the smart-ass phrases and say it
         if (!settings.debug){
-          var phraseToSayAfterMatch = helper.sayPhrase(winOrLose, data.fixtures[index]);
-
           helper.postToSlack(phraseToSayAfterMatch);
-          global.lastPhrase = phraseToSayAfterMatch;
         }
         else {
           console.log(helper.sayPhrase(winOrLose, data.fixtures[index]));
         }
+        //remember the last phrase in a global variable
+        global.lastPhrase = phraseToSayAfterMatch;
       }
     }
   }

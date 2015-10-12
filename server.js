@@ -82,7 +82,7 @@ var server = app.listen(process.env.PORT || PORT, function(){
 
   //set up a timer.
   setInterval(function(){
-    console.log("Tick...next match is " + (nextMatch || "not scheduled.") );
+    console.log("Tick...next match is " + (nextMatch || "not scheduled."));
     request(options, callback.callback);
   }, settings.pingInteralInMilliseconds);
 });
