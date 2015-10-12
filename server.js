@@ -27,13 +27,16 @@ app.use(allowCrossDomain);
 
 //function to help with cross-site scripting
 function allowCrossDomain(req, res, next) {
-  res.setHeader('Access-Control-Allow-Methods', '*');
+  res.Header('Access-Control-Allow-Methods', '*');
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
   if (req.method === 'OPTIONS') {
     res.send(200);
   } else {
     next();
   }
 }
+
+app.all('/', allowCrossDomain);
 
 //api call that returns the infomation about the next match. this needs to
 //be tidyed up.
