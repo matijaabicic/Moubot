@@ -43,7 +43,7 @@ app.all('/', allowCrossDomain);
 app.get('/api', function(req, res){
   //google pageview tracking
   visitor.pageview("/api").send();
-  res.send('Next Chelsea match is ' + (nextMatch || 'not scheduled') + '.');
+  res.send('Next Chelsea match is ' + (global.nextMatch || 'not scheduled') + '.');
 });
 
 //early slack api. only knows how to respond with the time left until the next match
@@ -58,10 +58,10 @@ app.get('/api/slack', function(req, res){
 
   //construc the response
   var jsonResponse = {};
-  jsonResponse.text = 'Next Chelsea match is ' + (nextMatch || 'not scheduled' + '.');
-  jsonResponse.nextMatchDate = nextMatch;
-  jsonResponse.nextOpponent = nextOpponent;
-  jsonResponse.lastPhrase = lastPhrase;
+  jsonResponse.text = 'Next Chelsea match is ' + (global.nextMatch || 'not scheduled' + '.');
+  jsonResponse.nextMatchDate = global.nextMatch;
+  jsonResponse.nextOpponent = global.nextOpponent;
+  jsonResponse.lastPhrase = global.lastPhrase;
   //console.log(req);
   res.send(jsonResponse);
 });
