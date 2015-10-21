@@ -26,8 +26,8 @@ var callback = function(error, response, body){
     {
         var nextMatchDate = moment.utc(data.fixtures[index].date);
         if (RightNow.isBefore(moment.utc(data.fixtures[index].date))){
-          nextMatch = RightNow.to(nextMatchDate);
-          nextOpponent = helper.getOpponent(data.fixtures[index]);
+          global.nextMatch = RightNow.to(nextMatchDate);
+          global.nextOpponent = helper.getOpponent(data.fixtures[index]);
           break;
         }
     }
