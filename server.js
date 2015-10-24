@@ -11,6 +11,7 @@ var ua = require('universal-analytics');
 global.nextMatch = null;
 global.nextOpponent = null;
 global.lastPhrase = null;
+global.lastServerStart = null;
 
 //let the server port be configurable. it really doesn't matter since this
 //is a listening port. Moubot v1 does not listen.
@@ -62,6 +63,7 @@ app.get('/api/slack', function(req, res){
   jsonResponse.nextMatchDate = global.nextMatch;
   jsonResponse.nextOpponent = global.nextOpponent;
   jsonResponse.lastPhrase = global.lastPhrase;
+  jsonResponse.lastServerStart = global.lastServerStart;
   //console.log(req);
   res.send(jsonResponse);
 });
@@ -77,6 +79,7 @@ var options = {
 
 var server = app.listen(process.env.PORT || PORT, function(){
   console.log("Server started at localhost:%s", PORT);
+  global.lastServerStart = new Date();
 
   //keep a track of last matchday commented, to avoid duplicates.
   //this needs refactoring
