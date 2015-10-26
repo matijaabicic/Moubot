@@ -35,7 +35,8 @@
       $( document ).ready(function() {
         // this is running client-side so we can't pick up the match info from global variable
         //call api
-        var nextMatchUri = 'api/slack';
+        //var nextMatchUri = 'api/slack';
+        var nextMatchUri = 'http://www.moubot.com/api/slack';
 
         //get data from local api and modify the page
         requestJSON(nextMatchUri, function(json) {
