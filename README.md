@@ -4,7 +4,7 @@ Moubot in action:
 ![Alt text](images/MourinhoInAction.png?raw=true "Moubot in Action")
 
 Jose Mourinho Slack Bot - whines or gloats in your Slack channel after every
-Chelsea game. Moubot also likes a healthy dose of pre-game banter.
+~~Chelsea~~ Manchester United game. Moubot also likes a healthy dose of pre-game banter.
 
 You can execute Moubot in 2 ways (in both instances set debug: true in settings.js):
 
