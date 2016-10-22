@@ -45,7 +45,7 @@ app.all('/', allowCrossDomain);
 app.get('/api', function(req, res){
   //google pageview tracking
   visitor.pageview("/api").send();
-  res.send('Next Chelsea match is ' + (global.nextMatch || 'not scheduled') + '.');
+  res.send('Next Manchester United match is ' + (global.nextMatch || 'not scheduled') + '.');
 });
 
 //early slack api. only knows how to respond with the time left until the next match
