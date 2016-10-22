@@ -60,7 +60,7 @@ app.get('/api/slack', function(req, res){
 
   //construc the response
   var jsonResponse = {};
-  jsonResponse.text = 'Next Chelsea match is ' + (global.nextMatch || 'not scheduled' + '.');
+  jsonResponse.text = 'Next Manchester United match is ' + (global.nextMatch || 'not scheduled' + '.');
   jsonResponse.nextMatchDate = global.nextMatch;
   jsonResponse.nextOpponent = global.nextOpponent;
   jsonResponse.lastPhrase = global.lastPhrase;
