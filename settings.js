@@ -12,5 +12,8 @@ module.exports = {
   postMatchWindowInHours: 2,  // time after then match in hours when we are ready to rant
   postMatchWindowCloseTimeInHoursAfterMatch: 4, // time after the match in hours when rant window closes
   GA : 'UA-68256772-1', // Google analytics tracking ID
-  gaIgnoreHosts: ['localhost:8080', 'localhost:5000', 'moubot.com'] //list of hosts to be ignored on API paths
+  gaIgnoreHosts: ['localhost:8080', 'localhost:5000', 'moubot.com'], //list of hosts to be ignored on API paths
+  //v2.0 - moved team settings into settings.js from tokens.js
+  resultsEndpoint : 'http://api.football-data.org/alpha/teams/66/fixtures', //66 - Manchester Utd.
+  myTeamName : 'Manchester United FC'
 };

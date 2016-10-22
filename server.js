@@ -71,7 +71,7 @@ app.get('/api/slack', function(req, res){
 
 //let's define options for our recurrent http request
 var options = {
-  url: tokens.resultsEndpoint,
+  url: settings.resultsEndpoint,
   headers: {
     'X-Auth-Token' : process.env.resultsToken
   }
