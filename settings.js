@@ -15,5 +15,7 @@ module.exports = {
   gaIgnoreHosts: ['localhost:8080', 'localhost:5000', 'moubot.com'], //list of hosts to be ignored on API paths
   //v2.0 - moved team settings into settings.js from tokens.js
   resultsEndpoint : 'http://api.football-data.org/alpha/teams/66/fixtures', //66 - Manchester Utd.
-  myTeamName : 'Manchester United FC'
+  myTeamName : 'Manchester United FC',
+  //v2.0.1 - #36 - on-off switch
+  disablePostingToSlack = true
 };

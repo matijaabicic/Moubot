@@ -1,6 +1,6 @@
 {
   "name": "Moubot",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Mourinho Slack Bot - rants in your Slack channel before and after Manchester Utd. match.",
   "main": "server.js",
   "dependencies": {
