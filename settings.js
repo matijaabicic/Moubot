@@ -17,5 +17,5 @@ module.exports = {
   resultsEndpoint : 'http://api.football-data.org/alpha/teams/66/fixtures', //66 - Manchester Utd.
   myTeamName : 'Manchester United FC',
   //v2.0.1 - #36 - on-off switch
-  disablePostingToSlack = true
+  disablePostingToSlack: true
 };
